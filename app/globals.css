@@ -1,26 +1,194 @@
 @import "tailwindcss";
 
+/* ===== My Sups+ Design System ===== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Color Palette */
+  --cream: #FDFBF7;
+  --charcoal: #1B1B1B;
+  --taupe: #7A756D;
+  --coral: #FF5C8A;
+  --cyan: #00C2FF;
+  --sunshine: #FFD700;
+  --mint: #00E699;
+  --navy: #1B2A4A;
+  --white: #FFFFFF;
+
+  /* Derived Colors */
+  --cream-dark: #F5F0E8;
+  --coral-light: #FFE0EB;
+  --cyan-light: #E0F7FF;
+  --mint-light: #E0FFF2;
+  --navy-light: #2A3D66;
+
+  /* Background & Foreground (for dark mode compat if needed later) */
+  --background: var(--cream);
+  --foreground: var(--charcoal);
 }
 
 @theme inline {
+  /* === Colors === */
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-charcoal: var(--charcoal);
+  --color-taupe: var(--taupe);
+  --color-coral: var(--coral);
+  --color-coral-light: var(--coral-light);
+  --color-cyan: var(--cyan);
+  --color-cyan-light: var(--cyan-light);
+  --color-sunshine: var(--sunshine);
+  --color-mint: var(--mint);
+  --color-mint-light: var(--mint-light);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+  --color-white: var(--white);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* === Typography === */
+  --font-serif: "Cormorant Garamond", "Georgia", serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "DM Sans", system-ui, sans-serif;
+
+  /* === Spacing Scale Extensions === */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+  --spacing-26: 6.5rem;
+  --spacing-30: 7.5rem;
+  --spacing-32: 8rem;
+  --spacing-36: 9rem;
+  --spacing-40: 10rem;
+
+  /* === Border Radius === */
+  --radius-card: 0.5rem;
+  --radius-pill: 9999px;
+
+  /* === Shadows === */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --shadow-elevated: 0 12px 40px rgba(0, 0, 0, 0.1);
+
+  /* === Animations === */
+  --animate-fade-in: fade-in 0.6s ease-out;
+  --animate-slide-up: slide-up 0.6s ease-out;
+  --animate-slide-in-right: slide-in-right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* === Keyframe Animations === */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 92, 138, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(255, 92, 138, 0);
+  }
+}
+
+/* === Base Styles === */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/* === Selection Color === */
+::selection {
+  background-color: var(--coral);
+  color: var(--white);
+}
+
+/* === Scrollbar Styling (subtle) === */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--taupe);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--charcoal);
+}
+
+/* === Focus Styles (Accessibility) === */
+*:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* === Utility Classes === */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Horizontal scroll snap utility */
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-snap-x > * {
+  scroll-snap-align: start;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Glass morphism utility */
+.glass {
+  background: rgba(253, 251, 247, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
