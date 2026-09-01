@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { cn, formatPrice } from "@/lib/utils";
+import { useCart } from "@/hooks/useCart";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { SubscriptionToggle } from "@/components/product/SubscriptionToggle";
 import { VariantSelector, type Variant } from "@/components/product/VariantSelector";
@@ -125,11 +126,19 @@ export default function ProductDetailPage() {
     ? product.price * (1 - product.subscription_discount / 100)
     : selectedVariant?.price ?? product.price;
 
+  const { addItem } = useCart();
+
   function handleAddToCart() {
-    // TODO: wire up to Zustand cart store
-    alert(
-      `Added ${quantity}x ${product.name} (${selectedVariant?.name ?? "default"}) to cart!`
-    );
+    addItem({
+      id: product.slug,
+      name: product.name,
+      slug: product.slug,
+      price: currentPrice,
+      image: product.images[0],
+      variant: selectedVariant?.name,
+      quantity,
+      isSubscription,
+    });
   }
 
   return (

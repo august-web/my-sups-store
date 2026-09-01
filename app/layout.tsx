@@ -1,8 +1,11 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Cormorant_Garamond, Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CartDrawer } from "@/components/cart/CartDrawer";
+import { useCart } from "@/hooks/useCart";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -23,46 +26,35 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "My Sups+ | Premium Skincare Supplements",
-    template: "%s | My Sups+",
-  },
-  description:
-    "Clear skin starts inside ✨ Premium skincare supplements for men & women. Marine collagen, glow-boosting gummies, and more.",
-  keywords: [
-    "skincare supplements",
-    "marine collagen",
-    "glow gummies",
-    "skincare",
-    "wellness",
-    "beauty supplements",
-  ],
-  openGraph: {
-    title: "My Sups+ | Premium Skincare Supplements",
-    description: "Clear skin starts inside ✨ Premium skincare supplements.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-    siteName: "My Sups+",
-    locale: "en_US",
-    type: "website",
-  },
-};
+function LayoutContent({ children }: { children: React.ReactNode }) {
+  const { itemCount, toggleCart } = useCart();
+
+  return (
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${inter.variable} ${dmSans.variable} h-full antialiased`}
+    >
+      <head>
+        <title>My Sups+ | Premium Skincare Supplements</title>
+        <meta
+          name="description"
+          content="Clear skin starts inside ✨ Premium skincare supplements for men & women."
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-cream text-charcoal font-sans">
+        <Navbar cartItemCount={itemCount} onCartClick={toggleCart} />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <CartDrawer />
+      </body>
+    </html>
+  );
+}
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html
-      lang="en"
-      className={`${cormorant.variable} ${inter.variable} ${dmSans.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-cream text-charcoal font-sans">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </body>
-    </html>
-  );
+  return <LayoutContent>{children}</LayoutContent>;
 }
