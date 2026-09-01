@@ -5,6 +5,11 @@ import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { cn, formatPrice } from "@/lib/utils";
 import { useCart } from "@/hooks/useCart";
+import { Search } from "lucide-react";
+
+function SearchIcon() {
+  return <Search className="w-10 h-10 text-taupe/30 mx-auto mb-4" />;
+}
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { SubscriptionToggle } from "@/components/product/SubscriptionToggle";
 import { VariantSelector, type Variant } from "@/components/product/VariantSelector";
@@ -105,7 +110,7 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-        <span className="text-5xl mb-4 block">🔍</span>
+        <SearchIcon />
         <h1 className="font-serif text-3xl font-semibold text-charcoal">
           Product Not Found
         </h1>

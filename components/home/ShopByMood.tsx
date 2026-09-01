@@ -2,33 +2,34 @@
 
 import { motion } from "framer-motion";
 import { MoodCard } from "@/components/ui/MoodCard";
+import { Sparkles, Leaf, Zap, Moon } from "lucide-react";
 
 const MOODS = [
   {
     name: "Glow",
     description: "Radiance-boosting supplements for luminous, dewy skin.",
-    icon: "✨",
+    icon: "sparkles",
     href: "/shop?mood=glow",
     color: "coral" as const,
   },
   {
     name: "De-Bloat",
     description: "Digestive support for a calm, comfortable belly.",
-    icon: "🌿",
+    icon: "leaf",
     href: "/shop?mood=debloat",
     color: "mint" as const,
   },
   {
     name: "Energy",
     description: "Daily vitality to fuel your skin and your day.",
-    icon: "⚡",
+    icon: "zap",
     href: "/shop?mood=energy",
     color: "sunshine" as const,
   },
   {
     name: "Sleep",
     description: "Rest & recovery supplements for overnight repair.",
-    icon: "🌙",
+    icon: "moon",
     href: "/shop?mood=sleep",
     color: "cyan" as const,
   },

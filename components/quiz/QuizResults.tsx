@@ -6,6 +6,7 @@ import { cn, formatPrice } from "@/lib/utils";
 import { useCart } from "@/hooks/useCart";
 import { Badge } from "@/components/ui/Badge";
 import { StarRating } from "@/components/ui/StarRating";
+import { Sparkles, Gift, Package } from "lucide-react";
 
 interface RecommendedProduct {
   slug: string;
@@ -46,7 +47,7 @@ export function QuizResults({ recommendations }: QuizResultsProps) {
           transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
           className="text-5xl mb-4"
         >
-          ✨
+          <Sparkles className="w-10 h-10 text-sunshine mx-auto" />
         </motion.div>
         <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-charcoal">
           Your Personalized Glow Stack
@@ -65,7 +66,7 @@ export function QuizResults({ recommendations }: QuizResultsProps) {
           className="text-center mb-8"
         >
           <Badge variant="coral" className="text-sm px-4 py-1.5">
-            🎁 Bundle these & save 15%
+            Bundle these & save 15%
           </Badge>
         </motion.div>
       )}
@@ -85,7 +86,7 @@ export function QuizResults({ recommendations }: QuizResultsProps) {
           >
             {/* Image placeholder */}
             <div className="w-20 h-20 flex-shrink-0 rounded-lg bg-cream-dark flex items-center justify-center">
-              <span className="text-2xl opacity-30">✨</span>
+              <Sparkles className="w-6 h-6 text-taupe/30" />
             </div>
 
             {/* Info */}
@@ -139,7 +140,7 @@ export function QuizResults({ recommendations }: QuizResultsProps) {
             "min-w-[200px] text-center"
           )}
         >
-          Build Your Box 📦
+          Build Your Box
         </Link>
         <Link
           href="/quiz"

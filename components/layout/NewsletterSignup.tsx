@@ -31,7 +31,7 @@ export function NewsletterSignup({
     return (
       <div className={cn("text-center", className)}>
         <p className="font-serif text-2xl text-charcoal">
-          You&apos;re on the list! ✨
+          You&apos;re on the list!
         </p>
         <p className="mt-2 text-sm text-taupe">
           Check your inbox for your 15% off code.

@@ -37,7 +37,7 @@ export function QuizOption({
             : "bg-white border-charcoal/10 text-charcoal hover:border-charcoal/30"
         )}
       >
-        <span className="text-lg flex-shrink-0">{icon}</span>
+        {icon && <span className="text-lg flex-shrink-0">{icon}</span>}
         <div className="min-w-0">
           <span className="text-sm font-sans font-medium block">{label}</span>
           {description && (
@@ -81,7 +81,7 @@ export function QuizOption({
           : "bg-white border-charcoal/10 text-charcoal hover:border-charcoal/30"
       )}
     >
-      <span className="text-2xl">{icon}</span>
+      {icon && <span className="text-2xl">{icon}</span>}
       <span className="text-sm font-sans font-medium">{label}</span>
     </motion.button>
   );

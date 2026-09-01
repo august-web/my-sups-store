@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { ShoppingBag } from "lucide-react";
 
 interface EmptyCartProps {
   onClose: () => void;
@@ -18,7 +19,7 @@ export function EmptyCart({ onClose }: EmptyCartProps) {
       animate={{ opacity: 1, y: 0 }}
       className="flex flex-col items-center justify-center py-16 px-6"
     >
-      <span className="text-5xl mb-4">✨</span>
+      <ShoppingBag className="w-12 h-12 text-taupe/40 mb-4" />
       <p className="font-serif text-xl font-semibold text-charcoal">
         Your cart is empty
       </p>

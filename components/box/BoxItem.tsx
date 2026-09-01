@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Sparkles } from "lucide-react";
 import { cn, formatPrice } from "@/lib/utils";
 import type { BoxItem as BoxItemType } from "@/lib/box-logic";
 
@@ -31,8 +31,7 @@ export function BoxItemCard({ item, onUpdateQuantity, onRemove }: BoxItemProps) 
             alt={item.name}
             className="w-full h-full object-cover rounded-lg"
           />
-        ) : (
-          <span className="text-lg opacity-30">✨</span>
+        ) : (            <Sparkles className="w-4 h-4 text-taupe/30" />
         )}
       </div>
 

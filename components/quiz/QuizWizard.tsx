@@ -136,7 +136,7 @@ export function QuizWizard() {
               : "bg-charcoal/10 text-charcoal/40 cursor-not-allowed"
           )}
         >
-          {isLastStep ? "See My Results ✨" : "Next →"}
+          {isLastStep ? "See My Results" : "Next →"}
         </motion.button>
       </div>
     </div>

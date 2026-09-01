@@ -39,7 +39,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="text-center max-w-xl mx-auto">
           <h3 className="font-serif text-3xl lg:text-4xl font-semibold text-charcoal">
-            Join the glow ✨
+            Join the glow
           </h3>
           <p className="mt-3 text-taupe text-sm">
             Subscribe for exclusive offers, skincare tips, and 15% off your first order.

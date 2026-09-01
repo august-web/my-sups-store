@@ -5,6 +5,11 @@ import { motion } from "framer-motion";
 import { ProductCard, type Product } from "@/components/product/ProductCard";
 import { FilterDrawer, type FilterState } from "@/components/ui/FilterDrawer";
 import { cn } from "@/lib/utils";
+import { Search } from "lucide-react";
+
+function SearchIcon() {
+  return <Search className="w-10 h-10 text-taupe/30 mx-auto mb-4" />;
+}
 
 // Mock products — replace with Supabase query
 const ALL_PRODUCTS: Product[] = [
@@ -268,7 +273,7 @@ export default function ShopPage() {
           {/* Product Grid */}
           {filteredProducts.length === 0 ? (
             <div className="text-center py-20">
-              <span className="text-4xl mb-4 block">🔍</span>
+              <SearchIcon />
               <p className="font-serif text-xl text-charcoal">
                 No products found
               </p>

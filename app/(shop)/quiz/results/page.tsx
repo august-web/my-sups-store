@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { QuizResults } from "@/components/quiz/QuizResults";
+import { Sparkles } from "lucide-react";
 
 // Product lookup — replace with Supabase query
 const PRODUCT_DATA: Record<string, { name: string; price: number; rating: number; reviewCount: number }> = {
@@ -78,7 +79,7 @@ export default function QuizResultsPage() {
   if (loading || !results) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-        <span className="text-4xl animate-pulse block mb-4">✨</span>
+        <Sparkles className="w-10 h-10 text-sunshine mx-auto mb-4 animate-pulse" />
         <p className="text-taupe">Loading your results...</p>
       </div>
     );

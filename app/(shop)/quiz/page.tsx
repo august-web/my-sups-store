@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { QuizWizard } from "@/components/quiz/QuizWizard";
+import { Sparkles } from "lucide-react";
 
 /**
  * Skin quiz landing page — intro section + 3-step wizard.
@@ -17,7 +18,7 @@ export default function QuizPage() {
           transition={{ duration: 0.5 }}
           className="text-5xl block mb-4"
         >
-          ✨
+          <Sparkles className="w-10 h-10 text-sunshine mx-auto" />
         </motion.span>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}

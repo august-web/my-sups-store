@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn, formatPrice } from "@/lib/utils";
 import { StarRating } from "@/components/ui/StarRating";
+import { Sparkles } from "lucide-react";
 
 interface Product {
   id: string;
@@ -82,7 +83,7 @@ export function ProductPicker({ boxItemIds, onAddProduct }: ProductPickerProps) 
             >
               {/* Image */}
               <div className="w-16 h-16 flex-shrink-0 rounded-lg bg-cream-dark flex items-center justify-center">
-                <span className="text-xl opacity-30">✨</span>
+                <Sparkles className="w-5 h-5 text-taupe/30" />
               </div>
 
               {/* Info */}

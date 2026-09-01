@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { BoxBuilder } from "@/components/box/BoxBuilder";
+import { Package } from "lucide-react";
 
 /**
  * Build Your Box page — HUM-style dynamic bundle builder with tiered discounts.
@@ -17,7 +18,7 @@ export default function BuildYourBoxPage() {
           transition={{ duration: 0.5 }}
           className="text-5xl block mb-4"
         >
-          📦
+          <Package className="w-10 h-10 text-taupe mx-auto" />
         </motion.span>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}

@@ -40,7 +40,7 @@ export function CartUpsells({ onAddProduct }: CartUpsellsProps) {
   return (
     <div className="px-4 py-4 border-t border-charcoal/5">
       <p className="text-xs font-display font-bold uppercase tracking-wider text-taupe mb-3">
-        Complete Your Routine ✨
+        Complete Your Routine
       </p>
       <div className="space-y-2">
         {UPSELL_PRODUCTS.map((product) => (

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Sparkles } from "lucide-react";
 import { cn, formatPrice } from "@/lib/utils";
 import type { CartItem as CartItemType } from "@/lib/cart-store";
 
@@ -33,7 +33,7 @@ export function CartItem({ item, onUpdateQuantity, onRemove }: CartItemProps) {
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <span className="text-xl opacity-30">✨</span>
+            <Sparkles className="w-5 h-5 text-taupe/30" />
           </div>
         )}
       </div>

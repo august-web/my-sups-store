@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { cn, formatPrice } from "@/lib/utils";
 import { StarRating } from "@/components/ui/StarRating";
 import { Badge } from "@/components/ui/Badge";
+import { Sparkles } from "lucide-react";
 
 export interface Product {
   id: string;
@@ -50,7 +51,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
-              <span className="text-6xl opacity-20">✨</span>
+              <Sparkles className="w-10 h-10 text-taupe/20" />
             </div>
           )}
           {product.is_bestseller && (

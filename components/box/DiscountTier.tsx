@@ -56,7 +56,7 @@ export function DiscountTierDisplay({
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  ✅
+                  ✓
                 </motion.span>
               ) : (
                 <span className="opacity-40">○</span>

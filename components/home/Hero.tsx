@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
+import { Sparkles } from "lucide-react";
 
 /**
  * Full-bleed hero section with parallax scroll effect.
@@ -50,7 +51,8 @@ export function Hero() {
         >
           Clear Skin
           <br />
-          Starts Inside ✨
+          Starts Inside
+          <Sparkles className="inline-block w-8 h-8 lg:w-12 lg:h-12 ml-2 text-sunshine" />
         </motion.h1>
 
         <motion.p

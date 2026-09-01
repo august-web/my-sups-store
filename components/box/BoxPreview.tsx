@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn, formatPrice } from "@/lib/utils";
+import { Package, PartyPopper } from "lucide-react";
 import type { BoxItem } from "@/lib/box-logic";
 import { calculateBoxTotal } from "@/lib/box-logic";
 import { BoxItemCard } from "./BoxItem";
@@ -46,7 +47,7 @@ export function BoxPreview({
       <div className="mt-4">
         {items.length === 0 ? (
           <div className="text-center py-8">
-            <span className="text-3xl block mb-2">📦</span>
+            <Package className="w-10 h-10 text-taupe/30 mx-auto mb-2" />
             <p className="text-sm text-taupe">
               Your box is empty. Add products to start building!
             </p>
@@ -125,7 +126,7 @@ export function BoxPreview({
           </div>
           {pricing.totalSavings > 0 && (
             <p className="text-center text-xs text-mint font-medium">
-              You&apos;re saving {formatPrice(pricing.totalSavings)}! 🎉
+              You&apos;re saving {formatPrice(pricing.totalSavings)}!
             </p>
           )}
         </div>
