@@ -5,6 +5,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CartDrawer } from "@/components/cart/CartDrawer";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { useCart } from "@/hooks/useCart";
 
 const cormorant = Cormorant_Garamond({
@@ -46,6 +47,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
         <main className="flex-1">{children}</main>
         <Footer />
         <CartDrawer />
+        <WhatsAppButton />
       </body>
     </html>
   );
