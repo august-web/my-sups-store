@@ -9,13 +9,13 @@ export function cn(...inputs: ClassValue[]): string {
 }
 
 /**
- * Format a number as USD currency.
- * @example formatPrice(29.99) → "$29.99"
+ * Format a number as Ghanaian Cedis (GHS).
+ * @example formatPrice(29.99) → "GH₵29.99"
  */
 export function formatPrice(
   amount: number,
-  currency: string = "USD",
-  locale: string = "en-US"
+  currency: string = "GHS",
+  locale: string = "en-GH"
 ): string {
   return new Intl.NumberFormat(locale, {
     style: "currency",

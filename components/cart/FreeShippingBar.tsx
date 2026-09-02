@@ -11,7 +11,7 @@ function CheckIcon() {
   return <CheckCircle className="w-4 h-4 inline" />;
 }
 
-const THRESHOLD = 50;
+const THRESHOLD = 500;
 
 interface FreeShippingBarProps {
   subtotal: number;

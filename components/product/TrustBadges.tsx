@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 const BADGES = [
   {
     icon: Truck,
-    label: "Free Shipping 50+",
+    label: "Free Shipping 500+",
   },
   {
     icon: ShieldCheck,

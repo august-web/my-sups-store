@@ -25,7 +25,7 @@ const COMPANY_LINKS = [
 const CONNECT_LINKS = [
   { label: "TikTok", href: "https://www.tiktok.com/@my.sups.store", external: true },
   { label: "Instagram", href: "https://www.instagram.com", external: true },
-  { label: "WhatsApp", href: "https://wa.me/972594455472", external: true },
+  { label: "WhatsApp", href: "https://wa.me/233594455472", external: true },
 ] as const;
 
 /**
