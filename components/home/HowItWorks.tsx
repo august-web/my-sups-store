@@ -4,16 +4,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Target, Package, Sparkles } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  target: Target,
-  package: Package,
-  sparkles: Sparkles,
-};
-
-function StepIcon({ name }: { name: string }) {
-  const Icon = iconMap[name];
-  return Icon ? <Icon className="w-8 h-8 text-charcoal/40" /> : null;
+function StepIcon({ icon: Icon }: { icon: LucideIcon }) {
+  return <Icon className="w-8 h-8 text-charcoal/40" />;
 }
 
 const STEPS = [
@@ -21,21 +15,21 @@ const STEPS = [
     number: "01",
     title: "Take the Quiz",
     description: "Answer a few questions about your skin, lifestyle, and goals.",
-    icon: "target",
+    icon: Target,
     href: "/quiz",
   },
   {
     number: "02",
     title: "Build Your Box",
     description: "Choose your perfect supplement stack with bundle discounts.",
-    icon: "package",
+    icon: Package,
     href: "/build-your-box",
   },
   {
     number: "03",
     title: "Glow from Within",
     description: "See visible results in 30 days — guaranteed.",
-    icon: "sparkles",
+    icon: Sparkles,
     href: "/shop",
   },
 ] as const;
@@ -81,7 +75,7 @@ export function HowItWorks() {
             >
               {/* Number circle */}
               <div className="relative z-10 mx-auto mb-6 flex items-center justify-center w-[104px] h-[104px] rounded-full bg-cream border-2 border-charcoal/10">
-                <StepIcon name={step.icon} />
+                <StepIcon icon={step.icon} />
               </div>
 
               {/* Step number */}

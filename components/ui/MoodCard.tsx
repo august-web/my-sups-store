@@ -2,27 +2,18 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles, Leaf, Zap, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { LucideIcon } from "lucide-react";
 
 type MoodColor = "coral" | "mint" | "sunshine" | "cyan";
-
-type IconName = "sparkles" | "leaf" | "zap" | "moon";
 
 interface MoodCardProps {
   name: string;
   description: string;
-  icon: IconName;
+  icon: LucideIcon;
   href: string;
   color: MoodColor;
 }
-
-const iconMap: Record<IconName, React.ComponentType<{ className?: string }>> = {
-  sparkles: Sparkles,
-  leaf: Leaf,
-  zap: Zap,
-  moon: Moon,
-};
 
 const colorStyles: Record<MoodColor, { bg: string; border: string; hover: string; text: string; iconColor: string }> = {
   coral: {
@@ -58,9 +49,8 @@ const colorStyles: Record<MoodColor, { bg: string; border: string; hover: string
 /**
  * Mood card with Lucide icon, name, description, and color accent.
  */
-export function MoodCard({ name, description, icon, href, color }: MoodCardProps) {
+export function MoodCard({ name, description, icon: Icon, href, color }: MoodCardProps) {
   const styles = colorStyles[color];
-  const IconComponent = iconMap[icon];
 
   return (
     <Link href={href}>
@@ -77,7 +67,7 @@ export function MoodCard({ name, description, icon, href, color }: MoodCardProps
           styles.hover
         )}
       >
-        <IconComponent className={cn("w-8 h-8 mb-4", styles.iconColor)} />
+        <Icon className={cn("w-8 h-8 mb-4", styles.iconColor)} />
         <h3 className={cn("font-serif text-xl font-semibold mb-2", styles.text)}>
           {name}
         </h3>
