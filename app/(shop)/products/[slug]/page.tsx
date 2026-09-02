@@ -6,86 +6,15 @@ import { motion } from "framer-motion";
 import { cn, formatPrice } from "@/lib/utils";
 import { useCart } from "@/hooks/useCart";
 import { Search } from "lucide-react";
-
-function SearchIcon() {
-  return <Search className="w-10 h-10 text-taupe/30 mx-auto mb-4" />;
-}
+import { getProductBySlug, type MockProduct } from "@/lib/mock-products";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { SubscriptionToggle } from "@/components/product/SubscriptionToggle";
 import { VariantSelector, type Variant } from "@/components/product/VariantSelector";
-import { IngredientBreakdown, type Ingredient } from "@/components/product/IngredientBreakdown";
+import { IngredientBreakdown } from "@/components/product/IngredientBreakdown";
 import { ReviewSection } from "@/components/product/ReviewSection";
 import { TrustBadges } from "@/components/product/TrustBadges";
 import { StickyMobileCTA } from "@/components/ui/StickyMobileCTA";
 import { StarRating } from "@/components/ui/StarRating";
-
-// Mock product data — replace with Supabase query
-const MOCK_PRODUCTS: Record<string, {
-  name: string;
-  slug: string;
-  description: string;
-  price: number;
-  compare_at_price?: number;
-  images: string[];
-  ratings: number;
-  review_count: number;
-  is_subscription: boolean;
-  subscription_discount: number;
-  how_to_use: string;
-  variants: Variant[];
-  ingredients: Ingredient[];
-}> = {
-  "marine-collagen-peptides": {
-    name: "Marine Collagen Peptides",
-    slug: "marine-collagen-peptides",
-    description:
-      "Wild-caught marine collagen peptides sourced from sustainably harvested fish. Supports skin elasticity, hydration, and a youthful glow from within. Unflavored and dissolves easily in any beverage.",
-    price: 39.99,
-    compare_at_price: 49.99,
-    images: [
-      "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&q=80",
-      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=800&q=80",
-      "https://images.unsplash.com/photo-1570194065650-d99fb4ee8e3e?w=800&q=80",
-    ],
-    ratings: 4.8,
-    review_count: 234,
-    is_subscription: true,
-    subscription_discount: 20,
-    how_to_use:
-      "Mix one scoop (10g) into your morning coffee, smoothie, or water. For best results, take daily for at least 30 days. Can be used hot or cold.",
-    variants: [
-      { id: "v1", name: "30 Day Supply", price: 39.99 },
-      { id: "v2", name: "60 Day Supply", price: 69.99 },
-      { id: "v3", name: "90 Day Supply", price: 94.99 },
-    ],
-    ingredients: [
-      {
-        name: "Marine Collagen Peptides",
-        amount: "10g",
-        benefit:
-          "Hydrolyzed type I & III collagen from wild-caught fish. Supports skin elasticity, hydration, and reduces fine lines. Absorbs 1.5x more effectively than bovine collagen.",
-      },
-      {
-        name: "Vitamin C",
-        amount: "90mg",
-        benefit:
-          "Essential for collagen synthesis and provides antioxidant protection. Helps brighten skin tone and protect against environmental damage.",
-      },
-      {
-        name: "Hyaluronic Acid",
-        amount: "120mg",
-        benefit:
-          "Attracts and retains moisture in the skin, supporting hydration from within. Helps plump skin and reduce the appearance of fine lines.",
-      },
-      {
-        name: "Zinc",
-        amount: "11mg",
-        benefit:
-          "Supports skin repair and wound healing. Helps regulate oil production and reduce inflammation associated with breakouts.",
-      },
-    ],
-  },
-};
 
 const TABS = ["Description", "Ingredients", "How to Use", "Reviews"] as const;
 
@@ -98,10 +27,11 @@ type Tab = (typeof TABS)[number];
 export default function ProductDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
-  const product = MOCK_PRODUCTS[slug];
+  const product = getProductBySlug(slug);
+  type ProductVariant = NonNullable<MockProduct["variants"]>[number];
 
   const [isSubscription, setIsSubscription] = useState(false);
-  const [selectedVariant, setSelectedVariant] = useState<Variant | null>(
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(
     product?.variants[0] ?? null
   );
   const [quantity, setQuantity] = useState(1);
@@ -110,7 +40,9 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-        <SearchIcon />
+        <div className="w-10 h-10 text-taupe/30 mx-auto mb-4">
+          <Search className="w-10 h-10" />
+        </div>
         <h1 className="font-serif text-3xl font-semibold text-charcoal">
           Product Not Found
         </h1>
@@ -134,6 +66,7 @@ export default function ProductDetailPage() {
   const { addItem } = useCart();
 
   function handleAddToCart() {
+    if (!product) return;
     addItem({
       id: product.slug,
       name: product.name,
@@ -289,9 +222,11 @@ export default function ProductDetailPage() {
         {/* Tab Content */}
         <div className="py-8">
           {activeTab === "Description" && (
-            <p className="text-sm text-charcoal/80 leading-relaxed max-w-2xl">
-              {product.description}
-            </p>
+            <div className="text-sm text-charcoal/80 leading-relaxed max-w-2xl space-y-4">
+              {product.long_description.split("\n\n").map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
           )}
           {activeTab === "Ingredients" && (
             <div className="max-w-2xl">
@@ -312,7 +247,7 @@ export default function ProductDetailPage() {
             <ReviewSection
               rating={product.ratings}
               reviewCount={product.review_count}
-              reviews={[]}
+              reviews={product.reviews}
             />
           )}
         </div>

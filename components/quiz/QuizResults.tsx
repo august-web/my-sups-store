@@ -6,7 +6,7 @@ import { cn, formatPrice } from "@/lib/utils";
 import { useCart } from "@/hooks/useCart";
 import { Badge } from "@/components/ui/Badge";
 import { StarRating } from "@/components/ui/StarRating";
-import { Sparkles, Gift, Package } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 interface RecommendedProduct {
   slug: string;
@@ -14,6 +14,7 @@ interface RecommendedProduct {
   price: number;
   rating: number;
   reviewCount: number;
+  image?: string;
   reason: string;
 }
 
@@ -84,9 +85,19 @@ export function QuizResults({ recommendations }: QuizResultsProps) {
             variants={itemVariants}
             className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm"
           >
-            {/* Image placeholder */}
-            <div className="w-20 h-20 flex-shrink-0 rounded-lg bg-cream-dark flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-taupe/30" />
+            {/* Product image */}
+            <div className="w-20 h-20 flex-shrink-0 rounded-lg bg-cream-dark overflow-hidden">
+              {rec.image ? (
+                <img
+                  src={rec.image}
+                  alt={rec.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <Sparkles className="w-6 h-6 text-taupe/30" />
+                </div>
+              )}
             </div>
 
             {/* Info */}

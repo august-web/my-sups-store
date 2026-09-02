@@ -6,96 +6,25 @@ import { ProductCard, type Product } from "@/components/product/ProductCard";
 import { FilterDrawer, type FilterState } from "@/components/ui/FilterDrawer";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
+import { getAllProducts } from "@/lib/mock-products";
 
 function SearchIcon() {
   return <Search className="w-10 h-10 text-taupe/30 mx-auto mb-4" />;
 }
 
-// Mock products — replace with Supabase query
-const ALL_PRODUCTS: Product[] = [
-  {
-    id: "1",
-    name: "Marine Collagen Peptides",
-    slug: "marine-collagen-peptides",
-    price: 39.99,
-    compare_at_price: 49.99,
-    ratings: 4.8,
-    review_count: 234,
-    is_bestseller: true,
-    mood: "glow",
-  },
-  {
-    id: "2",
-    name: "Glow-Boosting Gummies",
-    slug: "glow-boosting-gummies",
-    price: 29.99,
-    ratings: 4.7,
-    review_count: 189,
-    is_bestseller: true,
-    mood: "glow",
-  },
-  {
-    id: "3",
-    name: "Beauty Sleep Complex",
-    slug: "beauty-sleep-complex",
-    price: 34.99,
-    ratings: 4.9,
-    review_count: 156,
-    is_bestseller: true,
-    mood: "sleep",
-  },
-  {
-    id: "4",
-    name: "De-Bloat Probiotic",
-    slug: "de-bloat-probiotic",
-    price: 32.99,
-    compare_at_price: 39.99,
-    ratings: 4.6,
-    review_count: 128,
-    is_bestseller: true,
-    mood: "debloat",
-  },
-  {
-    id: "5",
-    name: "Energy + Glow Stack",
-    slug: "energy-glow-stack",
-    price: 64.99,
-    compare_at_price: 79.98,
-    ratings: 4.8,
-    review_count: 97,
-    is_bestseller: true,
-    mood: "energy",
-  },
-  {
-    id: "6",
-    name: "Hyaluronic Acid Serum",
-    slug: "hyaluronic-acid-serum",
-    price: 27.99,
-    ratings: 4.5,
-    review_count: 82,
-    mood: "glow",
-  },
-  {
-    id: "7",
-    name: "Vitamin C Brightening Gummies",
-    slug: "vitamin-c-brightening-gummies",
-    price: 26.99,
-    ratings: 4.6,
-    review_count: 115,
-    mood: "glow",
-  },
-  {
-    id: "8",
-    name: "Complete Glow Bundle",
-    slug: "complete-glow-bundle",
-    price: 89.99,
-    compare_at_price: 107.97,
-    ratings: 4.9,
-    review_count: 63,
-    is_bestseller: true,
-    mood: "glow",
-  },
-];
+// Map mock products to the Product card type
+const ALL_PRODUCTS: Product[] = getAllProducts().map((p, idx) => ({
+  id: String(idx + 1),
+  name: p.name,
+  slug: p.slug,
+  price: p.price,
+  compare_at_price: p.compare_at_price,
+  image: p.images[0],
+  ratings: p.ratings,
+  review_count: p.review_count,
+  is_bestseller: p.is_bestseller,
+  mood: p.mood,
+}));
 
 const DEFAULT_FILTERS: FilterState = {
   category: "All",

@@ -4,46 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { QuizResults } from "@/components/quiz/QuizResults";
 import { Sparkles } from "lucide-react";
-
-// Product lookup — replace with Supabase query
-const PRODUCT_DATA: Record<string, { name: string; price: number; rating: number; reviewCount: number }> = {
-  "marine-collagen-peptides": {
-    name: "Marine Collagen Peptides",
-    price: 39.99,
-    rating: 4.8,
-    reviewCount: 234,
-  },
-  "glow-boosting-gummies": {
-    name: "Glow-Boosting Gummies",
-    price: 29.99,
-    rating: 4.7,
-    reviewCount: 189,
-  },
-  "beauty-sleep-complex": {
-    name: "Beauty Sleep Complex",
-    price: 34.99,
-    rating: 4.9,
-    reviewCount: 156,
-  },
-  "de-bloat-probiotic": {
-    name: "De-Bloat Probiotic",
-    price: 32.99,
-    rating: 4.6,
-    reviewCount: 128,
-  },
-  "energy-glow-stack": {
-    name: "Energy + Glow Stack",
-    price: 64.99,
-    rating: 4.8,
-    reviewCount: 97,
-  },
-  "vitamin-c-brightening-gummies": {
-    name: "Vitamin C Brightening Gummies",
-    price: 26.99,
-    rating: 4.6,
-    reviewCount: 115,
-  },
-};
+import { getProductBySlug } from "@/lib/mock-products";
 
 interface StoredResults {
   answers: { concerns: string[]; lifestyle: string; budget: string };
@@ -88,14 +49,15 @@ export default function QuizResultsPage() {
   // Map recommendations to full product data
   const recommendations = results.recommendations
     .map((rec) => {
-      const data = PRODUCT_DATA[rec.slug];
+      const data = getProductBySlug(rec.slug);
       if (!data) return null;
       return {
         slug: rec.slug,
         name: data.name,
         price: data.price,
-        rating: data.rating,
-        reviewCount: data.reviewCount,
+        rating: data.ratings,
+        reviewCount: data.review_count,
+        image: data.images[0],
         reason: rec.reason,
       };
     })
@@ -105,6 +67,7 @@ export default function QuizResultsPage() {
     price: number;
     rating: number;
     reviewCount: number;
+    image: string;
     reason: string;
   }[];
 

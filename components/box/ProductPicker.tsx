@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn, formatPrice } from "@/lib/utils";
 import { StarRating } from "@/components/ui/StarRating";
-import { Sparkles } from "lucide-react";
+import { getAllProducts } from "@/lib/mock-products";
 
 interface Product {
   id: string;
@@ -14,17 +14,19 @@ interface Product {
   rating: number;
   reviewCount: number;
   mood?: string;
+  image?: string;
 }
 
-const ALL_PRODUCTS: Product[] = [
-  { id: "1", name: "Marine Collagen Peptides", slug: "marine-collagen-peptides", price: 39.99, rating: 4.8, reviewCount: 234, mood: "glow" },
-  { id: "2", name: "Glow-Boosting Gummies", slug: "glow-boosting-gummies", price: 29.99, rating: 4.7, reviewCount: 189, mood: "glow" },
-  { id: "3", name: "Beauty Sleep Complex", slug: "beauty-sleep-complex", price: 34.99, rating: 4.9, reviewCount: 156, mood: "sleep" },
-  { id: "4", name: "De-Bloat Probiotic", slug: "de-bloat-probiotic", price: 32.99, rating: 4.6, reviewCount: 128, mood: "debloat" },
-  { id: "5", name: "Energy + Glow Stack", slug: "energy-glow-stack", price: 64.99, rating: 4.8, reviewCount: 97, mood: "energy" },
-  { id: "6", name: "Vitamin C Brightening Gummies", slug: "vitamin-c-brightening-gummies", price: 26.99, rating: 4.6, reviewCount: 115, mood: "glow" },
-  { id: "7", name: "Hyaluronic Acid Serum", slug: "hyaluronic-acid-serum", price: 27.99, rating: 4.5, reviewCount: 82, mood: "glow" },
-];
+const ALL_PRODUCTS: Product[] = getAllProducts().map((p, idx) => ({
+  id: String(idx + 1),
+  name: p.name,
+  slug: p.slug,
+  price: p.price,
+  rating: p.ratings,
+  reviewCount: p.review_count,
+  mood: p.mood,
+  image: p.images[0],
+}));
 
 const MOOD_FILTERS = ["All", "Glow", "De-Bloat", "Energy", "Sleep"];
 
@@ -82,8 +84,18 @@ export function ProductPicker({ boxItemIds, onAddProduct }: ProductPickerProps) 
               )}
             >
               {/* Image */}
-              <div className="w-16 h-16 flex-shrink-0 rounded-lg bg-cream-dark flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-taupe/30" />
+              <div className="w-16 h-16 flex-shrink-0 rounded-lg bg-cream-dark overflow-hidden">
+                {product.image ? (
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="w-5 h-5 rounded-full bg-taupe/10" />
+                  </div>
+                )}
               </div>
 
               {/* Info */}

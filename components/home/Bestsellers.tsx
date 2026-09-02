@@ -5,63 +5,21 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ProductCard, type Product } from "@/components/product/ProductCard";
+import { getBestsellers } from "@/lib/mock-products";
 
-// Mock bestseller data — replace with Supabase query
-const MOCK_PRODUCTS: Product[] = [
-  {
-    id: "1",
-    name: "Marine Collagen Peptides",
-    slug: "marine-collagen-peptides",
-    price: 39.99,
-    compare_at_price: 49.99,
-    ratings: 4.8,
-    review_count: 234,
-    is_bestseller: true,
-    mood: "glow",
-  },
-  {
-    id: "2",
-    name: "Glow-Boosting Gummies",
-    slug: "glow-boosting-gummies",
-    price: 29.99,
-    ratings: 4.7,
-    review_count: 189,
-    is_bestseller: true,
-    mood: "glow",
-  },
-  {
-    id: "3",
-    name: "Beauty Sleep Complex",
-    slug: "beauty-sleep-complex",
-    price: 34.99,
-    ratings: 4.9,
-    review_count: 156,
-    is_bestseller: true,
-    mood: "sleep",
-  },
-  {
-    id: "4",
-    name: "De-Bloat Probiotic",
-    slug: "de-bloat-probiotic",
-    price: 32.99,
-    compare_at_price: 39.99,
-    ratings: 4.6,
-    review_count: 128,
-    is_bestseller: true,
-    mood: "debloat",
-  },
-  {
-    id: "5",
-    name: "Energy + Glow Stack",
-    slug: "energy-glow-stack",
-    price: 64.99,
-    compare_at_price: 79.98,
-    ratings: 4.8,
-    review_count: 97,
-    is_bestseller: true,
-    mood: "energy",
-  },
-];
+// Map bestsellers to Product card type with images
+const MOCK_PRODUCTS: Product[] = getBestsellers().map((p, idx) => ({
+  id: String(idx + 1),
+  name: p.name,
+  slug: p.slug,
+  price: p.price,
+  compare_at_price: p.compare_at_price,
+  image: p.images[0],
+  ratings: p.ratings,
+  review_count: p.review_count,
+  is_bestseller: p.is_bestseller,
+  mood: p.mood,
+}));
 
 const containerVariants = {
   hidden: {},
