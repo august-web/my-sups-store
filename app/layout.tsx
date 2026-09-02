@@ -39,8 +39,10 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
         <title>My Sups+ | Premium Skincare Supplements</title>
         <meta
           name="description"
-          content="Clear skin starts inside ✨ Premium skincare supplements for men & women."
+          content="Clear skin starts inside. Premium skincare supplements for men & women."
         />
+        <meta name="theme-color" content="#FDFBF7" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className="min-h-full flex flex-col bg-cream text-charcoal font-sans">
         <Navbar cartItemCount={itemCount} onCartClick={toggleCart} />
